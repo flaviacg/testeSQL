@@ -1,0 +1,6 @@
+-- Liste todos os acúmulos válidos cuja origem do cadastro do Cliente seja igual a PA
+
+SELECT *
+FROM Acumulo
+WHERE PartnerCode = 'PA'
+  AND TransactionStatus = 'Processado';
