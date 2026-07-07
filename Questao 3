@@ -1,0 +1,18 @@
+SELECT 
+    '2024' AS Ano_Resgate,
+    c.MemberName AS Nome_Cliente,
+    COALESCE(r.PartnerCode, '0') AS Parceiro_Resgate,
+    COALESCE(SUM(r.TransactionPoints), 0) AS Pontos_Resgatado,
+    COALESCE(SUM(r.TransactionValue), 0) AS Valor_Resgate
+FROM Cadastro c
+LEFT JOIN Resgate r 
+    ON c.MemberID = r.MemberID 
+   AND r.TransactionProcessDate LIKE '2024%'
+   AND r.TransactionStatus = 'Processado'
+GROUP BY 
+    c.MemberID, 
+    c.MemberName, 
+    r.PartnerCode
+ORDER BY 
+    Pontos_Resgatado DESC, 
+    Nome_Cliente;
