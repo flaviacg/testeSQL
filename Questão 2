@@ -1,0 +1,6 @@
+SELECT MemberID, TransactionID,
+    ROW_NUMBER() OVER (
+        PARTITION BY MemberID 
+        ORDER BY MemberID DESC
+    ) AS SequencialAcumulo
+FROM Acumulo
