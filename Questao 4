@@ -1,0 +1,7 @@
+SELECT 
+    TransactionID AS ID_TRANSACAO,
+    COUNT(ItemID) AS QTD_RESGATE,
+    SUM(ItemPoints) AS PONTOS_UTILIZADOS
+FROM ComposicaoResgate
+GROUP BY TransactionID
+ORDER BY QTD_RESGATE DESC;
