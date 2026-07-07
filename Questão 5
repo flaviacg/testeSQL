@@ -1,0 +1,12 @@
+SELECT 
+    c.TransactionID AS Id_Transacao_Resgate,
+    c.PartnerCode AS Parceiro_Resgate,
+    a.PartnerCode AS Parceiro_Acumulo,
+    COUNT(a.TransactionID) AS Qtd_Transacoes_Acumulo
+FROM ComposicaoResgate c
+INNER JOIN Acumulo a 
+    ON c.RootTransactionID = a.TransactionID
+GROUP BY 
+    c.TransactionID,
+    c.PartnerCode,
+    a.PartnerCode;
